@@ -1,13 +1,13 @@
 {% set name = "bluesky-adaptive" %}
-{% set version = "0.3.1" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bluesky-adaptive-{{ version }}.tar.gz
-  sha256: f123541f9918af8eea40f6d7f0af7d02cb695f48c14fd721bad3df7ec71a75df
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 4b14580b408bd54510376332cf2f3bc34f00c3956aa4068fc3603b66ce9012cf
 
 build:
   noarch: python
