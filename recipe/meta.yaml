@@ -1,53 +1,61 @@
 {% set name = "bluesky-adaptive" %}
-{% set version = "0.3.1" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bluesky-adaptive-{{ version }}.tar.gz
-  sha256: f123541f9918af8eea40f6d7f0af7d02cb695f48c14fd721bad3df7ec71a75df
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: c35afb31698455010340af5ddfc368ad66402e3942a862926f90e94145bbc0b2
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
+    - hatchling
+    - hatch-vcs
     - pip
   run:
-    - python >=3.7
-    - bluesky
-    - bluesky-live
-    - bluesky-widgets
-    - bluesky-kafka
-    - bluesky-queueserver-api
-    - xkcdpass
-    - tiled
+    - python >={{ python_min }}
+    - bluesky-base >=1.14.2
+    - networkx >=3
     - numpy
-    - pydantic
+    - rich >=13
+    # [all] extra
+    - ax-platform >=1.3.0,<1.4
+    - botorch >=0.18.0,<0.19.0
+    - gpytorch
+    - pytorch
+    - bluesky-queueserver-api
+    - scipy >=1.2.0
+    - xopt >3.0.0
+    # required by bluesky-queueserver-api, but missing from its conda-forge package
+    - websockets
 
 test:
   imports:
     - bluesky_adaptive
-    - bluesky_adaptive.adjudicators
-    - bluesky_adaptive.adjudicators.base
-    - bluesky_adaptive.adjudicators.msg
-    - bluesky_adaptive.agents
-    - bluesky_adaptive.agents.base
-    - bluesky_adaptive.server
-
+    - bluesky_adaptive.ax
+    - bluesky_adaptive.ax.queueserver_agent
+    - bluesky_adaptive.bayesian
+    - bluesky_adaptive.callbacks
+    - bluesky_adaptive.queueserver
+    - bluesky_adaptive.scipy
+    - bluesky_adaptive.xopt
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
   home: https://github.com/bluesky/bluesky-adaptive
-  summary: Tools for writing adaptive plans
+  summary: Beamline optimization with machine learning
   license: BSD-3-Clause
   license_file: LICENSE
 
