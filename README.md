@@ -7,7 +7,7 @@ Home: https://github.com/bluesky/bluesky-adaptive
 
 Package license: BSD-3-Clause
 
-Summary: Tools for writing adaptive plans
+Summary: Beamline optimization with machine learning
 
 Current build status
 ====================
@@ -189,4 +189,5 @@ Feedstock Maintainers
 
 * [@maffettone](https://github.com/maffettone/)
 * [@mrakitin](https://github.com/mrakitin/)
+* [@thopkins32](https://github.com/thopkins32/)
 
