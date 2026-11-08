@@ -1,5 +1,5 @@
 {% set name = "bluesky-adaptive" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: c35afb31698455010340af5ddfc368ad66402e3942a862926f90e94145bbc0b2
+  sha256: 2f7591364fb83b2defd0a0fbf1b29ff889806b5f24a0354ca0bdb3143f416e01
 
 build:
   noarch: python
